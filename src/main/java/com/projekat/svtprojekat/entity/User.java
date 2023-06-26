@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @Getter
@@ -20,19 +20,17 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false, unique = true)
-    private String userName;
+    private String username;
     @Column(nullable = false)
     private String password;
     @Column(nullable = false)
     private String email;
     @Column(nullable = false)
-    private LocalDate lastLogin;
+    private LocalDateTime lastLogin;
     @Column(nullable = false)
     private String firstName;
     @Column(nullable = false)
     private String lastName;
-    @Column(nullable = false)
-    private String profileImagePath;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
@@ -45,13 +43,12 @@ public class User {
     public User() {
     }
 
-    public User(String userName, String password, String email, LocalDate lastLogin, String firstName, String lastName, String profileImagePath) {
-        this.userName = userName;
+    public User(String username, String password, String email, LocalDateTime lastLogin, String firstName, String lastName) {
+        this.username = username;
         this.password = password;
         this.email = email;
         this.lastLogin = lastLogin;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.profileImagePath = profileImagePath;
     }
 }
