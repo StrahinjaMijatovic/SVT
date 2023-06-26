@@ -1,11 +1,13 @@
 package com.projekat.svtprojekat.entity;
 
+import com.projekat.svtprojekat.entity.enums.Roles;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -16,22 +18,29 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private int id;
-    @Column(name = "user_name")
+    private Long id;
+    @Column(nullable = false, unique = true)
     private String userName;
-    @Column(name = "password")
+    @Column(nullable = false)
     private String password;
-    @Column(name = "email")
+    @Column(nullable = false)
     private String email;
-    @Column(name = "last_login")
+    @Column(nullable = false)
     private LocalDate lastLogin;
-    @Column(name = "first_name")
+    @Column(nullable = false)
     private String firstName;
-    @Column(name = "last_name")
+    @Column(nullable = false)
     private String lastName;
-    @Column(name = "profile_image_path")
+    @Column(nullable = false)
     private String profileImagePath;
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Roles role;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    private Set<Post> posts;
 
     public User() {
     }
