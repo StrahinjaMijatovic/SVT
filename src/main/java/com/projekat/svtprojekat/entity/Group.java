@@ -15,7 +15,6 @@ public class Group {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(unique = true, nullable = false)
     private Long id;
 
     @Column(unique = true, nullable = false)
@@ -33,8 +32,10 @@ public class Group {
     @Column()
     private boolean isDeleted;
 
+    @Column(nullable = false)
     private boolean isSuspended;
 
+    @Column()
     private String suspendedReason;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
