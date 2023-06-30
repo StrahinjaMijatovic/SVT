@@ -16,6 +16,10 @@ public class Image {
     @Column(nullable = false)
     private String path;
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
+
     public Image() {
     }
 }

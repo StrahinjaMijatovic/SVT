@@ -23,6 +23,7 @@ public class PostController {
     @Autowired
     UserService userService;
 
+
     @PostMapping("/create")
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     public ResponseEntity<PostDTO> create(@RequestBody @Validated PostDTO newPost){
@@ -50,5 +51,12 @@ public class PostController {
 
         PostDTO postDTO = new PostDTO(edit);
         return  new ResponseEntity<>(postDTO, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{postId}")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+    public Post getPost(@PathVariable Long postId) {
+        Post post = postService.findOne(postId);
+        return post;
     }
 }

@@ -29,17 +29,20 @@ public class Group {
     @Column(nullable = false)
     private Long GroupAdmin;
 
-    @Column()
+    @Column
     private boolean isDeleted;
 
     @Column(nullable = false)
     private boolean isSuspended;
 
-    @Column()
+    @Column
     private String suspendedReason;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Post> posts;
+
+    @OneToMany
+    private Set<GroupRequest> groupRequests;
 
     public Group() {
     }

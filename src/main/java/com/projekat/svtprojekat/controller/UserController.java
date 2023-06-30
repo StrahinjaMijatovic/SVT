@@ -1,6 +1,7 @@
 package com.projekat.svtprojekat.controller;
 
 import com.projekat.svtprojekat.dto.JwtAuthenticationRequest;
+import com.projekat.svtprojekat.dto.PasswordDTO;
 import com.projekat.svtprojekat.dto.UserDTO;
 import com.projekat.svtprojekat.dto.UserTokenState;
 import com.projekat.svtprojekat.entity.User;
@@ -94,5 +95,11 @@ public class UserController {
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     public User user(Principal user) {
         return this.userService.findUserByUsername(user.getName());
+    }
+
+    @PutMapping("/changePassword")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+    public ResponseEntity<UserDTO> changePassword (@RequestBody @Validated PasswordDTO passwords) {
+        return userService.changePassword(passwords);
     }
 }

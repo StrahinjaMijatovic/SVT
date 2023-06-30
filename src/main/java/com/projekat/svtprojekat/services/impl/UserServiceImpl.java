@@ -1,11 +1,17 @@
 package com.projekat.svtprojekat.services.impl;
 
+import com.projekat.svtprojekat.dto.PasswordDTO;
 import com.projekat.svtprojekat.dto.UserDTO;
 import com.projekat.svtprojekat.entity.User;
 import com.projekat.svtprojekat.entity.enums.Roles;
 import com.projekat.svtprojekat.repository.UserRepository;
 import com.projekat.svtprojekat.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +27,10 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    @Lazy
+    private PasswordEncoder encoder;
 
     @Override
     public User findUserById(Long id) {
@@ -66,6 +76,23 @@ public class UserServiceImpl implements UserService {
     @Override
     public void saveUser(User user){
         userRepository.save(user);
+    }
+
+    @Override
+    public ResponseEntity<UserDTO> changePassword(PasswordDTO passwords) {
+        Authentication a = SecurityContextHolder.getContext().getAuthentication();
+        User user = this.findUserByUsername(a.getName());
+
+        if(encoder.matches(passwords.getCurrent(), user.getPassword()) && passwords.getConfirm().equals(passwords.getPassword())){
+            user.setPassword(encoder.encode(passwords.getPassword()));
+            this.saveUser(user);
+        } else {
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+
+        UserDTO userDTO = new UserDTO(user);
+
+        return new ResponseEntity<>(userDTO, HttpStatus.CREATED);
     }
 
 }

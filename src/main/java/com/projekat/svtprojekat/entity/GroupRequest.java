@@ -25,6 +25,9 @@ public class GroupRequest {
     @Column()
     private LocalDateTime at;
 
+    @ManyToOne
+    private Group group;
+
     public GroupRequest() {
     }
 }

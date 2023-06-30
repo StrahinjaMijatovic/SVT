@@ -14,4 +14,6 @@ public interface PostService {
     List<Post> findAll();
     void savePost(Post post);
     void deletePost(Long id);
+
+    Post findOne(Long id);
 }
