@@ -21,6 +21,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.security.Principal;
 import java.util.List;
 
@@ -50,8 +51,8 @@ public class UserController {
         this.tokenUtils = tokenUtils;
     }
     */
-    @PostMapping("/signup")
-    public ResponseEntity<UserDTO> create(@RequestBody @Validated UserDTO newUser){
+    @PostMapping("/register")
+    public ResponseEntity<UserDTO> create(@RequestBody @Valid UserDTO newUser){
 
         User createdUser = userService.createUser(newUser);
 

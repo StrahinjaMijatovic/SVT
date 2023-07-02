@@ -60,12 +60,11 @@ public class UserServiceImpl implements UserService {
         newUser.setPassword(passwordEncoder.encode(userDTO.getPassword()));
         newUser.setRole(Roles.USER);
         newUser.setEmail(userDTO.getEmail());
-        newUser.setFirstName(userDTO.getFirstname());
-        newUser.setLastName(userDTO.getLastname());
+        newUser.setFirstName(userDTO.getFirstName());
+        newUser.setLastName(userDTO.getLastName());
         newUser.setLastLogin(LocalDateTime.now());
-        newUser = userRepository.save(newUser);
 
-        return newUser;
+        return userRepository.save(newUser);
     }
 
     @Override

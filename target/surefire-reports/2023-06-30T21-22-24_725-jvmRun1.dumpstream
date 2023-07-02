@@ -1,0 +1,25 @@
+# Created at 2023-06-30T21:22:33.660
+TestSet has not finished before stream error has appeared >> initializing exit by non-null configuration: null
+java.io.EOFException
+	at java.base/java.io.DataInputStream.readInt(DataInputStream.java:398)
+	at org.apache.maven.surefire.booter.MasterProcessCommand.decode(MasterProcessCommand.java:115)
+	at org.apache.maven.surefire.booter.CommandReader$CommandRunnable.run(CommandReader.java:391)
+	at java.base/java.lang.Thread.run(Thread.java:1589)
+
+
+# Created at 2023-06-30T21:22:34.690
+Unexpected IOException with stream: 2023-06-30T21:22:34.689+02:00  INFO 9288 --- [           main] c.p.s.SvtProjekatApplicationTests        : Started SvtProjekatApplicationTests in 8.312 seconds (process running for 9.635)
+
+
+# Created at 2023-06-30T21:22:34.722
+Unexpected IOException: 5,1,com.projekat.svtprojekat.SvtProjekatApplicationTests,contextLoads,null,null,null
+
+
+# Created at 2023-06-30T21:22:35.198
+Unexpected IOException: 6,1,com.projekat.svtprojekat.SvtProjekatApplicationTests,contextLoads,null,null,null
+
+
+# Created at 2023-06-30T21:22:35.208
+Unexpected IOException: 2,1,org.apache.maven.surefire.junitplatform.JUnitPlatformProvider,com.projekat.svtprojekat.SvtProjekatApplicationTests,null,null,null
+
+
