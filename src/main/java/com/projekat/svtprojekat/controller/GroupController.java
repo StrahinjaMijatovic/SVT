@@ -19,11 +19,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/groups")
+@CrossOrigin(origins = "http://localhost:4200")
 public class GroupController {
 
     @Autowired
     UserService userService;
-
+    @Autowired
     GroupService groupService;
 
     PostService postService;
@@ -34,18 +35,16 @@ public class GroupController {
         this.postService = postService;
     }
 
-    @PostMapping("/create")
+    @PostMapping("/createGroup")
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
-    public ResponseEntity<GroupDTO> create(@RequestBody GroupDTO newGroup) {
+    public ResponseEntity<GroupDTO> create(@RequestBody @Validated GroupDTO newGroup){
 
         Group createdGroup = groupService.createGroup(newGroup);
 
-        if(createdGroup == null) {
+        if(createdGroup == null){
             return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
         }
-
         GroupDTO groupDTO = new GroupDTO(createdGroup);
-
         return new ResponseEntity<>(groupDTO, HttpStatus.CREATED);
     }
 

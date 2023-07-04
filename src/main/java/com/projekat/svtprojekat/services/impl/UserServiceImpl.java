@@ -94,4 +94,13 @@ public class UserServiceImpl implements UserService {
         return new ResponseEntity<>(userDTO, HttpStatus.CREATED);
     }
 
+    @Override
+    public void ChangeUserPassword(String username,String password) {
+        Optional<User> user = userRepository.findFirstByUsername(username);
+
+        User u=  user.get();
+        u.setPassword(passwordEncoder.encode(password));
+        userRepository.save(u);
+    }
+
 }

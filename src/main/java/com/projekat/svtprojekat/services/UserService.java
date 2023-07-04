@@ -16,4 +16,6 @@ public interface UserService {
     void saveUser(User user);
 
     ResponseEntity<UserDTO> changePassword(PasswordDTO passwordDTO);
+
+    void ChangeUserPassword(String username, String password);
 }

@@ -2,24 +2,29 @@ package com.projekat.svtprojekat.dto;
 
 import com.projekat.svtprojekat.entity.Reaction;
 import com.projekat.svtprojekat.entity.enums.ReactionType;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-import javax.validation.constraints.NotNull;
-import java.time.LocalDate;
+import javax.validation.constraints.NotEmpty;
+import java.time.LocalDateTime;
 
-@Data
+@Getter
+@Setter
 public class ReactionDTO {
 
     private Long id;
-    @NotNull
+    @NotEmpty
     private ReactionType type;
 
-    @NotNull
-    private LocalDate timestamp;
+    @NotEmpty
+    private LocalDateTime timestamp;
 
     public ReactionDTO (Reaction reaction) {
         this.id = reaction.getId();
         this.type = reaction.getType();
         this.timestamp = reaction.getTimestamp();
+    }
+
+    public ReactionDTO() {
     }
 }

@@ -1,24 +1,26 @@
 package com.projekat.svtprojekat.dto;
 
-import com.projekat.svtprojekat.entity.Post;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
-@NoArgsConstructor
 public class PostDTO {
 
     private Long id;
+
     @NotBlank
     private String content;
+    @NotNull
+    private String user;
 
-    public PostDTO(Post post){
-        this.id = post.getId();
-        this.content = post.getContent();
+    @NotBlank
+    private String creationDate;
+
+    public PostDTO() {
     }
 
 }

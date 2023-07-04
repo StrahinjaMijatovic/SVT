@@ -1,10 +1,14 @@
 package com.projekat.svtprojekat.dto;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
+
 public class PostUpdateDTO {
+    private String text;
 
-    private final Long id;
-    private final String text;
+    public PostUpdateDTO() {
+    }
 }

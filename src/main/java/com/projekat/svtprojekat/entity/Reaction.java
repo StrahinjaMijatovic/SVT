@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -21,7 +21,7 @@ public class Reaction {
     private ReactionType type;
 
     @Column(nullable = false)
-    private LocalDate timestamp;
+    private LocalDateTime timestamp;
 
     @ManyToOne()
     private User user;
@@ -31,6 +31,13 @@ public class Reaction {
 
     @ManyToOne()
     private Comment comment;
+
+    public Reaction(ReactionType type, User user, Post post) {
+        this.type = type;
+        this.user = user;
+        this.post = post;
+        this.timestamp = LocalDateTime.now();
+    }
 
     public Reaction() {
     }

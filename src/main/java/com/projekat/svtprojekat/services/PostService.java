@@ -1,6 +1,5 @@
 package com.projekat.svtprojekat.services;
 
-import com.projekat.svtprojekat.dto.PostDTO;
 import com.projekat.svtprojekat.entity.Post;
 
 import java.util.List;
@@ -10,7 +9,7 @@ public interface PostService {
 
     Optional<Post> findPostById(Long id);
     Post findPostByContent(String content);
-    Post createPost(PostDTO postDTO);
+    Post createPost(String content, Long userID);
     List<Post> findAll();
     void savePost(Post post);
     void deletePost(Long id);

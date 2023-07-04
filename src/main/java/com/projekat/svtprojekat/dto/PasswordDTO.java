@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 
 @Getter
 @Setter
@@ -11,11 +12,11 @@ public class PasswordDTO {
 
     @NotBlank
     private String username;
-    @NotBlank
+    @NotEmpty
     private String current;
-    @NotBlank
+    @NotEmpty
     private String password;
-    @NotBlank
+    @NotEmpty
     private String confirm;
 
     public PasswordDTO() {

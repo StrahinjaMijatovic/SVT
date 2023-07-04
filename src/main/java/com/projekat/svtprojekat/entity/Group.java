@@ -10,7 +10,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
-@Table(name = "group")
+@Table(name = "groupp")
 public class Group {
 
     @Id
@@ -26,7 +26,7 @@ public class Group {
     @Column (nullable = false)
     private LocalDateTime creationDate;
 
-    @Column(nullable = false)
+    @Column()
     private Long GroupAdmin;
 
     @Column

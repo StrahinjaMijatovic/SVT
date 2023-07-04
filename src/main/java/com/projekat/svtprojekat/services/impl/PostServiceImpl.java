@@ -1,6 +1,5 @@
 package com.projekat.svtprojekat.services.impl;
 
-import com.projekat.svtprojekat.dto.PostDTO;
 import com.projekat.svtprojekat.entity.Post;
 import com.projekat.svtprojekat.repository.PostRepository;
 import com.projekat.svtprojekat.services.PostService;
@@ -31,13 +30,14 @@ public class PostServiceImpl implements PostService {
         return null;
     }
     @Override
-    public Post createPost(PostDTO postDTO) {
-
-        Post post = new Post();
-        post.setContent(postDTO.getContent());
-        post.setCreationDate(LocalDateTime.now());
-        post = postRepository.save(post);
-        return post;
+    public Post createPost(String content, Long userID) {
+        Post newPost = new Post();
+        newPost.setContent(content);
+        newPost.setCreationDate(LocalDateTime.now());
+        newPost.setUser(Math.toIntExact(userID));
+        newPost.setDeleted(false);
+        newPost = postRepository.save(newPost);
+        return newPost;
     }
 
     @Override
